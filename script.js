@@ -1,3 +1,124 @@
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const projectItems = document.querySelectorAll('.project-item');
+    const projectContents = document.querySelectorAll('.project-content');
+
+    function setActiveProject(projectId) {
+        projectItems.forEach(item => item.classList.remove('active'));
+        projectContents.forEach(content => content.classList.remove('active'));
+
+        const activeItem = document.querySelector(`.project-item[data-project="${projectId}"]`);
+        const activeContent = document.getElementById(`project-${projectId}`);
+
+        activeItem.classList.add('active');
+        activeContent.classList.add('active');
+    }
+
+    projectItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const projectId = item.getAttribute('data-project');
+            setActiveProject(projectId);
+        });
+    });
+
+    // Initialize with the first project active
+    setActiveProject('1');
+
+    // Add hover effect for project images
+    const projectImages = document.querySelectorAll('.project-image');
+    projectImages.forEach(image => {
+        image.addEventListener('mousemove', (e) => {
+            const { left, top, width, height } = image.getBoundingClientRect();
+            const x = (e.clientX - left) / width;
+            const y = (e.clientY - top) / height;
+
+            image.style.transform = `scale(1.1) translate(${x * 10}px, ${y * 10}px)`;
+        });
+
+        image.addEventListener('mouseleave', () => {
+            image.style.transform = 'scale(1) translate(0, 0)';
+        });
+    });
+
+    // Add parallax effect to the background
+    const projectsSection = document.querySelector('.projects');
+    window.addEventListener('scroll', () => {
+        const scrollPosition = window.pageYOffset;
+        projectsSection.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
+    });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("DOM fully loaded and parsed");
+    const codeDisplay = document.querySelector("#contactSection #codeDisplay");
+    const contactForm = document.querySelector("#contactSection #contactForm");
+    const compilingScreen = document.querySelector("#contactSection #compilingScreen");
+    const container = document.querySelector("#contactSection .container");
+
+    const codeLines = [
+        "/* Contact Section Code */",
+        "form {",
+        "  display: flex;",
+        "  flex-direction: column;",
+        "  gap: 15px;",
+        "}",
+        "",
+        "// Adding input fields...",
+        '<label for="name">Name:</label>',
+        '<input type="text" id="name" name="name" required>',
+        "",
+        '<label for="email">Email:</label>',
+        '<input type="email" id="email" name="email" required>',
+        "",
+        '<label for="message">Message:</label>',
+        '<textarea id="message" name="message" required></textarea>',
+        "",
+        "// Adding a submit button...",
+        '<button type="submit">Send Message</button>',
+    ];
+
+    let i = 0; // Line counter for code typing
+
+    function typeCode() {
+        console.log("Typing code...");
+        if (i < codeLines.length) {
+            const currentLine = codeLines[i];
+            codeDisplay.textContent += currentLine + "\n"; // Append current line
+            codeDisplay.scrollTop = codeDisplay.scrollHeight; // Scroll to the bottom
+            i++;
+            setTimeout(typeCode, 300); // Delay between lines
+        } else {
+            showCompilingScreen(); // Show compiling screen after typing
+        }
+    }
+
+    function showCompilingScreen() {
+        console.log("Showing compiling screen...");
+        container.classList.add("blurred"); // Blur the background
+        compilingScreen.classList.add("active"); // Show compiling screen
+        setTimeout(() => hideCompilingScreen(), 1000); // Hide after 1 second
+    }
+
+    function hideCompilingScreen() {
+        console.log("Hiding compiling screen...");
+        compilingScreen.classList.remove("active"); // Hide compiling screen
+        container.classList.remove("blurred"); // Remove blur
+        codeDisplay.style.display = "none"; // Hide code display
+        contactForm.classList.remove("hidden"); // Show the contact form
+    }
+
+    function initializeCodeAnimation() {
+        console.log("Initializing code animation...");
+        codeDisplay.style.display = "block"; // Ensure code display is visible
+        codeDisplay.textContent = ""; // Clear any existing content
+        i = 0; // Reset line counter
+        typeCode(); // Start typing animation
+    }
+
+    initializeCodeAnimation(); // Initialize typing animation
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     const skillCards = document.querySelectorAll('.skill-card');
     const demoCode = document.getElementById('demoCode');
@@ -253,125 +374,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const projectItems = document.querySelectorAll('.project-item');
-        const projectContents = document.querySelectorAll('.project-content');
     
-        function setActiveProject(projectId) {
-            projectItems.forEach(item => item.classList.remove('active'));
-            projectContents.forEach(content => content.classList.remove('active'));
-    
-            const activeItem = document.querySelector(`.project-item[data-project="${projectId}"]`);
-            const activeContent = document.getElementById(`project-${projectId}`);
-    
-            activeItem.classList.add('active');
-            activeContent.classList.add('active');
-        }
-    
-        projectItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const projectId = item.getAttribute('data-project');
-                setActiveProject(projectId);
-            });
-        });
-    
-        // Initialize with the first project active
-        setActiveProject('1');
-    
-        // Add hover effect for project images
-        const projectImages = document.querySelectorAll('.project-image');
-        projectImages.forEach(image => {
-            image.addEventListener('mousemove', (e) => {
-                const { left, top, width, height } = image.getBoundingClientRect();
-                const x = (e.clientX - left) / width;
-                const y = (e.clientY - top) / height;
-    
-                image.style.transform = `scale(1.1) translate(${x * 10}px, ${y * 10}px)`;
-            });
-    
-            image.addEventListener('mouseleave', () => {
-                image.style.transform = 'scale(1) translate(0, 0)';
-            });
-        });
-    
-        // Add parallax effect to the background
-        const projectsSection = document.querySelector('.projects');
-        window.addEventListener('scroll', () => {
-            const scrollPosition = window.pageYOffset;
-            projectsSection.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
-        });
-    });
 
     // Append this at the end of script.js
-    document.addEventListener("DOMContentLoaded", () => {
-        console.log("DOM fully loaded and parsed");
-        const codeDisplay = document.querySelector("#contactSection #codeDisplay");
-        const contactForm = document.querySelector("#contactSection #contactForm");
-        const compilingScreen = document.querySelector("#contactSection #compilingScreen");
-        const container = document.querySelector("#contactSection .container");
     
-        const codeLines = [
-            "/* Contact Section Code */",
-            "form {",
-            "  display: flex;",
-            "  flex-direction: column;",
-            "  gap: 15px;",
-            "}",
-            "",
-            "// Adding input fields...",
-            '<label for="name">Name:</label>',
-            '<input type="text" id="name" name="name" required>',
-            "",
-            '<label for="email">Email:</label>',
-            '<input type="email" id="email" name="email" required>',
-            "",
-            '<label for="message">Message:</label>',
-            '<textarea id="message" name="message" required></textarea>',
-            "",
-            "// Adding a submit button...",
-            '<button type="submit">Send Message</button>',
-        ];
-    
-        let i = 0; // Line counter for code typing
-    
-        function typeCode() {
-            console.log("Typing code...");
-            if (i < codeLines.length) {
-                const currentLine = codeLines[i];
-                codeDisplay.textContent += currentLine + "\n"; // Append current line
-                codeDisplay.scrollTop = codeDisplay.scrollHeight; // Scroll to the bottom
-                i++;
-                setTimeout(typeCode, 300); // Delay between lines
-            } else {
-                showCompilingScreen(); // Show compiling screen after typing
-            }
-        }
-    
-        function showCompilingScreen() {
-            console.log("Showing compiling screen...");
-            container.classList.add("blurred"); // Blur the background
-            compilingScreen.classList.add("active"); // Show compiling screen
-            setTimeout(() => hideCompilingScreen(), 1000); // Hide after 1 second
-        }
-    
-        function hideCompilingScreen() {
-            console.log("Hiding compiling screen...");
-            compilingScreen.classList.remove("active"); // Hide compiling screen
-            container.classList.remove("blurred"); // Remove blur
-            codeDisplay.style.display = "none"; // Hide code display
-            contactForm.classList.remove("hidden"); // Show the contact form
-        }
-    
-        function initializeCodeAnimation() {
-            console.log("Initializing code animation...");
-            codeDisplay.style.display = "block"; // Ensure code display is visible
-            codeDisplay.textContent = ""; // Clear any existing content
-            i = 0; // Reset line counter
-            typeCode(); // Start typing animation
-        }
-    
-        initializeCodeAnimation(); // Initialize typing animation
-    });
     
     
 
