@@ -49,75 +49,73 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("DOM fully loaded and parsed");
-    const codeDisplay = document.querySelector("#contactSection #codeDisplay");
-    const contactForm = document.querySelector("#contactSection #contactForm");
-    const compilingScreen = document.querySelector("#contactSection #compilingScreen");
-    const container = document.querySelector("#contactSection .container");
+// --- Contact Section Animation Logic ---
+const codeDisplay = document.querySelector("#contactSection #codeDisplay");
+const contactForm = document.querySelector("#contactSection #contactForm");
+const compilingScreen = document.querySelector("#contactSection #compilingScreen");
+const container = document.querySelector("#contactSection .container");
 
-    const codeLines = [
-        "/* Contact Section Code */",
-        "form {",
-        "  display: flex;",
-        "  flex-direction: column;",
-        "  gap: 15px;",
-        "}",
-        "",
-        "// Adding input fields...",
-        '<label for="name">Name:</label>',
-        '<input type="text" id="name" name="name" required>',
-        "",
-        '<label for="email">Email:</label>',
-        '<input type="email" id="email" name="email" required>',
-        "",
-        '<label for="message">Message:</label>',
-        '<textarea id="message" name="message" required></textarea>',
-        "",
-        "// Adding a submit button...",
-        '<button type="submit">Send Message</button>',
-    ];
+const codeLines = [
+    "/* Contact Section Code */",
+    "form {",
+    "  display: flex;",
+    "  flex-direction: column;",
+    "  gap: 15px;",
+    "}",
+    "",
+    "// Adding input fields...",
+    '<label for="name">Name:</label>',
+    '<input type="text" id="name" name="name" required>',
+    "",
+    '<label for="email">Email:</label>',
+    '<input type="email" id="email" name="email" required>',
+    "",
+    '<label for="message">Message:</label>',
+    '<textarea id="message" name="message" required></textarea>',
+    "",
+    "// Adding a submit button...",
+    '<button type="submit">Send Message</button>',
+];
 
-    let i = 0; // Line counter for code typing
+let i = 0; // Line counter for code typing
 
-    function typeCode() {
-        console.log("Typing code...");
-        if (i < codeLines.length) {
-            const currentLine = codeLines[i];
-            codeDisplay.textContent += currentLine + "\n"; // Append current line
-            codeDisplay.scrollTop = codeDisplay.scrollHeight; // Scroll to the bottom
-            i++;
-            setTimeout(typeCode, 300); // Delay between lines
-        } else {
-            showCompilingScreen(); // Show compiling screen after typing
-        }
+function typeCode() {
+    if (i < codeLines.length) {
+        const currentLine = codeLines[i];
+        codeDisplay.textContent += currentLine + "\n";
+        codeDisplay.scrollTop = codeDisplay.scrollHeight; // Ensure scrolling as new lines are added
+        i++;
+        setTimeout(typeCode, 300); // Delay between lines
+    } else {
+        showCompilingScreen();
     }
+}
 
-    function showCompilingScreen() {
-        console.log("Showing compiling screen...");
-        container.classList.add("blurred"); // Blur the background
-        compilingScreen.classList.add("active"); // Show compiling screen
-        setTimeout(() => hideCompilingScreen(), 1000); // Hide after 1 second
-    }
+// Show the compiling screen, hide the form, and blur the background
+function showCompilingScreen() {
+    container.classList.add("blurred");
+    compilingScreen.classList.add("active");
+    contactForm.classList.add("hidden"); // Hide the form during the code animation
+    setTimeout(() => hideCompilingScreen(), 1000); // Wait for 1 second before hiding compiling screen
+}
 
-    function hideCompilingScreen() {
-        console.log("Hiding compiling screen...");
-        compilingScreen.classList.remove("active"); // Hide compiling screen
-        container.classList.remove("blurred"); // Remove blur
-        codeDisplay.style.display = "none"; // Hide code display
-        contactForm.classList.remove("hidden"); // Show the contact form
-    }
+// Hide compiling screen and reveal the form
+function hideCompilingScreen() {
+    compilingScreen.classList.remove("active");
+    container.classList.remove("blurred");
+    codeDisplay.style.display = "none"; // Hide code display after typing
+    contactForm.classList.remove("hidden"); // Reveal form after compiling
+}
 
-    function initializeCodeAnimation() {
-        console.log("Initializing code animation...");
-        codeDisplay.style.display = "block"; // Ensure code display is visible
-        codeDisplay.textContent = ""; // Clear any existing content
-        i = 0; // Reset line counter
-        typeCode(); // Start typing animation
-    }
+function initializeCodeAnimation() {
+    codeDisplay.style.display = "block"; // Ensure visibility
+    codeDisplay.textContent = ""; // Clear any existing content
+    contactForm.classList.add("hidden"); // Hide the form during code animation
+    i = 0; // Reset line counter
+    typeCode(); // Start typing animation
+}
 
-    initializeCodeAnimation(); // Initialize typing animation
-});
+initializeCodeAnimation(); // Initialize typing animation
 
 document.addEventListener('DOMContentLoaded', () => {
     const skillCards = document.querySelectorAll('.skill-card');
