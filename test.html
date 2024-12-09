@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Creative About Section</title>
+    <style>
+    .projects {
+    background-color: var(--background-color);
+    padding: 5rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.projects::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(78,205,196,0.1) 0%, rgba(255,107,107,0.05) 50%, rgba(255,230,109,0.1) 100%);
+    animation: rotate 60s linear infinite;
+    z-index: 0;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--primary-color);
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 50%;
+    height: 3px;
+    background-color: var(--accent-color);
+    transform: translateX(50%);
+}
+
+.project-showcase {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.project-list {
+    flex: 1;
+    max-width: 300px;
+}
+
+.project-item {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.project-item:hover,
+.project-item.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: var(--primary-color);
+    transform: translateX(10px);
+}
+
+.project-item h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.project-item p {
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.project-display {
+    flex: 2;
+    position: relative;
+    height: 400px;
+}
+
+.project-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+    transform: translateX(50px);
+}
+
+.project-content.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+.project-image {
+    flex: 1;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-content:hover .project-image img {
+    transform: scale(1.1);
+}
+
+.project-details {
+    flex: 1;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.project-details h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.project-details p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    
+}
+
+.tech-stack li {
+    background-color: var(--accent-color);
+    color: #2f2e41;;
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+}
+
+.btn-project {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    align-self: flex-start;
+}
+
+.btn-project:hover {
+    background-color: var(--secondary-color);
+}
+
+@media (max-width: 768px) {
+    .project-showcase {
+        flex-direction: column;
+    }
+
+    .project-list {
+        max-width: 100%;
+    }
+
+    .project-display {
+        height: auto;
+    }
+
+    .project-content {
+        position: relative;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .project-image,
+    .project-details {
+        width: 100%;
+    }
+
+    .project-details {
+        padding: 1rem 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Innovative Creations</h2>
+            <div class="project-showcase">
+                <div class="project-list">
+                    <div class="project-item active" data-project="1">
+                        <h3>Quantum Web</h3>
+                        <p>Next-gen responsive design</p>
+                    </div>
+                    <div class="project-item" data-project="2">
+                        <h3>EcoTrack</h3>
+                        <p>Sustainable living app</p>
+                    </div>
+                    <div class="project-item" data-project="3">
+                        <h3>NeuroLearn AI</h3>
+                        <p>Adaptive learning platform</p>
+                    </div>
+                    <div class="project-item" data-project="4">
+                        <h3>Holographic UI</h3>
+                        <p>Futuristic user interface</p>
+                    </div>
+                </div>
+                <div class="project-display">
+                    <div class="project-content active" id="project-1">
+                        <div class="project-image">
+                            <img src="test.png" alt="Quantum Web">
+                        </div>
+                        <div class="project-details">
+                            <h3>Quantum Web</h3>
+                            <p>A revolutionary approach to web design that adapts to user behavior and device capabilities in real-time.</p>
+                            <ul class="tech-stack">
+                                <li>React</li>
+                                <li>Next.js</li>
+                                <li>TensorFlow.js</li>
+                            </ul>
+                            <a href="#" class="btn-project">Explore Project</a>
+                        </div>
+                    </div>
+                    <div class="project-content" id="project-2">
+                        <div class="project-image">
+                            <img src="/placeholder.svg?height=400&width=600" alt="EcoTrack">
+                        </div>
+                        <div class="project-details">
+                            <h3>EcoTrack</h3>
+                            <p>An innovative app that helps users reduce their carbon footprint through personalized recommendations and community challenges.</p>
+                            <ul class="tech-stack">
+                                <li>React Native</li>
+                                <li>Node.js</li>
+                                <li>MongoDB</li>
+                            </ul>
+                            <a href="#" class="btn-project">Explore Project</a>
+                        </div>
+                    </div>
+                    <div class="project-content" id="project-3">
+                        <div class="project-image">
+                            <img src="/placeholder.svg?height=400&width=600" alt="NeuroLearn AI">
+                        </div>
+                        <div class="project-details">
+                            <h3>NeuroLearn AI</h3>
+                            <p>An AI-powered learning platform that adapts to each student's learning style and pace for optimal educational outcomes.</p>
+                            <ul class="tech-stack">
+                                <li>Python</li>
+                                <li>TensorFlow</li>
+                                <li>Vue.js</li>
+                            </ul>
+                            <a href="#" class="btn-project">Explore Project</a>
+                        </div>
+                    </div>
+                    <div class="project-content" id="project-4">
+                        <div class="project-image">
+                            <img src="/placeholder.svg?height=400&width=600" alt="Holographic UI">
+                        </div>
+                        <div class="project-details">
+                            <h3>Holographic UI</h3>
+                            <p>A cutting-edge user interface design system that brings 3D holographic elements to web and mobile applications.</p>
+                            <ul class="tech-stack">
+                                <li>Three.js</li>
+                                <li>WebGL</li>
+                                <li>Blender</li>
+                            </ul>
+                            <a href="#" class="btn-project">Explore Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    
+    
+    
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const projectItems = document.querySelectorAll('.project-item');
+    const projectContents = document.querySelectorAll('.project-content');
+
+    function setActiveProject(projectId) {
+        projectItems.forEach(item => item.classList.remove('active'));
+        projectContents.forEach(content => content.classList.remove('active'));
+
+        const activeItem = document.querySelector(`.project-item[data-project="${projectId}"]`);
+        const activeContent = document.getElementById(`project-${projectId}`);
+
+        activeItem.classList.add('active');
+        activeContent.classList.add('active');
+    }
+
+    projectItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const projectId = item.getAttribute('data-project');
+            setActiveProject(projectId);
+        });
+    });
+
+    // Initialize with the first project active
+    setActiveProject('1');
+
+    // Add hover effect for project images
+    const projectImages = document.querySelectorAll('.project-image');
+    projectImages.forEach(image => {
+        image.addEventListener('mousemove', (e) => {
+            const { left, top, width, height } = image.getBoundingClientRect();
+            const x = (e.clientX - left) / width;
+            const y = (e.clientY - top) / height;
+
+            image.style.transform = `scale(1.1) translate(${x * 10}px, ${y * 10}px)`;
+        });
+
+        image.addEventListener('mouseleave', () => {
+            image.style.transform = 'scale(1) translate(0, 0)';
+        });
+    });
+
+    // Add parallax effect to the background
+    const projectsSection = document.querySelector('.projects');
+    window.addEventListener('scroll', () => {
+        const scrollPosition = window.pageYOffset;
+        projectsSection.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
