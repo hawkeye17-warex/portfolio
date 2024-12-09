@@ -795,6 +795,24 @@ main {
     color: var(--primary-color);
 }
 
+#contactSection #codeDisplay {
+    display: block; /* Ensure it is displayed */
+    outline: none; /* Removes any default focus styles */
+    border: none; /* Ensures no border is visible */
+    white-space: pre-wrap; /* Allows text to wrap */
+    word-wrap: break-word; /* Breaks long words */
+    font-size: 1rem; /* Font size */
+    line-height: 1.5; /* Line height for readability */
+    background-color: #282c34; /* Background color */
+    padding: 20px; /* Padding around the text */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+    color: var(--accent-color); /* Text color */
+    max-height: 200px; /* Maximum height */
+    overflow: auto; /* Scroll if content exceeds max height */
+    margin-bottom: 20px; /* Space below the code display */
+}
+
 #contactSection pre {
     outline: none;
     border: none;
