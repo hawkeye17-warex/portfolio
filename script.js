@@ -50,73 +50,76 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // --- Contact Section Animation Logic ---
-const codeDisplay = document.querySelector("#contactSection #codeDisplay");
-const contactForm = document.querySelector("#contactSection #contactForm");
-const compilingScreen = document.querySelector("#contactSection #compilingScreen");
-const container = document.querySelector("#contactSection .container");
+document.addEventListener('DOMContentLoaded', () => {
+            const codeDisplay = document.querySelector("#contactSection #codeDisplay");
+            const contactForm = document.querySelector("#contactSection #contactForm");
+            const compilingScreen = document.querySelector("#contactSection #compilingScreen");
+            const container = document.querySelector("#contactSection .container");
 
-const codeLines = [
-    "/* Contact Section Code */",
-    "form {",
-    "  display: flex;",
-    "  flex-direction: column;",
-    "  gap: 15px;",
-    "}",
-    "",
-    "// Adding input fields...",
-    '<label for="name">Name:</label>',
-    '<input type="text" id="name" name="name" required>',
-    "",
-    '<label for="email">Email:</label>',
-    '<input type="email" id="email" name="email" required>',
-    "",
-    '<label for="message">Message:</label>',
-    '<textarea id="message" name="message" required></textarea>',
-    "",
-    "// Adding a submit button...",
-    '<button type="submit">Send Message</button>',
-];
+            const codeLines = [
+                "/* Contact Section Code */",
+                "form {",
+                "  display: flex;",
+                "  flex-direction: column;",
+                "  gap: 15px;",
+                "}",
+                "",
+                "// Adding input fields...",
+                '<label for="name">Name:</label>',
+                '<input type="text" id="name" name="name" required>',
+                "",
+                '<label for="email">Email:</label>',
+                '<input type="email" id="email" name="email" required>',
+                "",
+                '<label for="message">Message:</label>',
+                '<textarea id="message" name="message" required></textarea>',
+                "",
+                "// Adding a submit button...",
+                '<button type="submit">Send Message</button>',
+            ];
 
-let i = 0; // Line counter for code typing
+            let i = 0; // Line counter for code typing
 
-function typeCode() {
-    if (i < codeLines.length) {
-        const currentLine = codeLines[i];
-        codeDisplay.textContent += currentLine + "\n";
-        codeDisplay.scrollTop = codeDisplay.scrollHeight; // Ensure scrolling as new lines are added
-        i++;
-        setTimeout(typeCode, 300); // Delay between lines
-    } else {
-        showCompilingScreen();
-    }
-}
+            // Type code into #codeDisplay
+            function typeCode() {
+                if (i < codeLines.length) {
+                    const currentLine = codeLines[i];
+                    codeDisplay.textContent += currentLine + "\n";
+                    codeDisplay.scrollTop = codeDisplay.scrollHeight; // Ensure scrolling as new lines are added
+                    i++;
+                    setTimeout(typeCode, 300); // Delay between lines
+                } else {
+                    showCompilingScreen(); // Show compiling screen after typing ends
+                }
+            }
 
-// Show the compiling screen, hide the form, and blur the background
-function showCompilingScreen() {
-    container.classList.add("blurred");
-    compilingScreen.classList.add("active");
-    contactForm.classList.add("hidden"); // Hide the form during the code animation
-    setTimeout(() => hideCompilingScreen(), 1000); // Wait for 1 second before hiding compiling screen
-}
+            // Show the compiling screen, hide the form, and blur the background
+            function showCompilingScreen() {
+                container.classList.add("blurred");  // Apply the blur effect
+                compilingScreen.classList.add("active"); // Display the compiling screen
+                contactForm.classList.add("hidden"); // Hide the form during the code animation
+                setTimeout(() => hideCompilingScreen(), 1000); // Wait for 1 second before hiding compiling screen
+            }
 
-// Hide compiling screen and reveal the form
-function hideCompilingScreen() {
-    compilingScreen.classList.remove("active");
-    container.classList.remove("blurred");
-    codeDisplay.style.display = "none"; // Hide code display after typing
-    contactForm.classList.remove("hidden"); // Reveal form after compiling
-}
+            // Hide compiling screen and reveal the form after the compiling screen animation
+            function hideCompilingScreen() {
+                compilingScreen.classList.remove("active"); // Remove the compiling screen
+                container.classList.remove("blurred"); // Remove the blur effect
+                codeDisplay.style.display = "none"; // Hide the code display after typing
+                contactForm.classList.remove("hidden"); // Reveal form after compiling animation ends
+            }
 
-function initializeCodeAnimation() {
-    codeDisplay.style.display = "block"; // Ensure visibility
-    codeDisplay.textContent = ""; // Clear any existing content
-    contactForm.classList.add("hidden"); // Hide the form during code animation
-    i = 0; // Reset line counter
-    typeCode(); // Start typing animation
-}
+            // Initialize code animation
+            function initializeCodeAnimation() {
+                codeDisplay.style.display = "block"; // Ensure visibility
+                codeDisplay.textContent = ""; // Clear any existing content
+                contactForm.classList.add("hidden"); // Hide the form during code animation
+                i = 0; // Reset line counter
+                typeCode(); // Start typing animation
+            }
 
-initializeCodeAnimation(); // Initialize typing animation
-
+            initializeCodeAnimation(); // Initialize typing animation
+        });
 document.addEventListener('DOMContentLoaded', () => {
     const skillCards = document.querySelectorAll('.skill-card');
     const demoCode = document.getElementById('demoCode');
