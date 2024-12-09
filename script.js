@@ -1,5 +1,3 @@
-
-
 document.addEventListener('DOMContentLoaded', () => {
     const projectItems = document.querySelectorAll('.project-item');
     const projectContents = document.querySelectorAll('.project-content');
@@ -50,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // --- Contact Section Animation Logic ---
-
+document.addEventListener('DOMContentLoaded', () => {
             const codeDisplay = document.querySelector("#contactSection #codeDisplay");
             const contactForm = document.querySelector("#contactSection #contactForm");
             const compilingScreen = document.querySelector("#contactSection #compilingScreen");
@@ -119,8 +117,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             initializeCodeAnimation(); // Initialize typing animation
-        
-
+        });
+document.addEventListener('DOMContentLoaded', () => {
     const skillCards = document.querySelectorAll('.skill-card');
     const demoCode = document.getElementById('demoCode');
     const demoContent = document.querySelector('.demo-content');
